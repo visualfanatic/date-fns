@@ -5,9 +5,12 @@ node_js:
   - 6
 
 env:
-  - TEST_SUITE=main
-  - TEST_SUITE=tz TZ_LENGTH=2 TZ_INDEX=0
-  - TEST_SUITE=tz TZ_LENGTH=2 TZ_INDEX=1
+  global:
+    - PACKAGE_PATH="$TRAVIS_BUILD_DIR/tmp/package"
+  matrix:
+    - TEST_SUITE=main
+    - TEST_SUITE=tz TZ_LENGTH=2 TZ_INDEX=0
+    - TEST_SUITE=tz TZ_LENGTH=2 TZ_INDEX=1
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -25,7 +28,7 @@ script:
 
 before_deploy:
   - ./scripts/release/writeVersion.js
-  - ./scripts/release/updateFirebase.js
+  - env PACKAGE_OUTPUT_PATH="$PACKAGE_PATH" ./scripts/build/package.sh
 
 deploy:
   provider: npm
@@ -34,8 +37,10 @@ deploy:
     secure: Hi4MUZhrvibLGzgvzf7usaWBKmQSfl0p8bQEb+qT0HyAe4zbF9T/vDrRDvF/BVao0/XHTUTG0Q/+TYntm0Q8SJeUagmhoxRmvYGQEcGVPtKzkfzIohiMRGUo5BxQpHGFGs4r6O77Bsgti4uoUziBU6Ldw2qSb9QUi5PX3VT06eY=
   on:
     tags: true
+  local_dir: $PACKAGE_PATH
 
 after_deploy:
+  - ./scripts/release/updateFirebase.js
   - ./scripts/release/tweet.js
 
 cache:
