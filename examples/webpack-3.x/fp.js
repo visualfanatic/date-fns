@@ -1,8 +1,8 @@
-import {formatWithOptions, addYears} from 'date-fns/esm/fp'
-import {eo} from 'date-fns/esm/locale'
+import { formatWithOptions, addYears } from 'date-fns/esm/fp'
+import { eo } from 'date-fns/esm/locale'
 
 const addFiveYears = addYears(5)
-const dateToString = formatWithOptions({locale: eo}, 'D MMMM YYYY')
+const dateToString = formatWithOptions({ locale: eo }, 'D MMMM YYYY')
 
 const dates = [
   new Date(2017, 0 /* Jan */, 1),
@@ -11,7 +11,9 @@ const dates = [
 ]
 
 const formattedDates = dates
-  .map((date) => dateToString(addFiveYears(date)))
+  .map(function (date) {
+    return dateToString(addFiveYears(date))
+  })
   .join(', ')
 
 console.log(formattedDates === '1 januaro 2022, 11 februaro 2022, 2 julio 2022')

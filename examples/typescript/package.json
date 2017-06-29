@@ -5,6 +5,10 @@
   "main": "example.ts",
   "author": "Sasha Koss <koss@nocorp.me>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/date-fns/date-fns.git"
+  },
   "dependencies": {
     "typescript": "^2.1.5",
     "webpack": "^2.2.0"

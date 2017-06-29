@@ -15,9 +15,9 @@ See ./dist for output.
 
 ## Minimal Build Size
 
-You can see minimal build size (when you use just one function):
+You can see minimal build size (when just a single function is used):
 
-```sh
-gzip-size dist/example.min.js | pretty-bytes
-#=> 4.04 kB
-```
+| Version             | Size    |
+|---------------------|---------|
+| `addDays` (minimal) | 1.34 kB |
+| `format` (popular)  | 4.29 kB |

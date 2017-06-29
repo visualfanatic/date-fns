@@ -1,26 +1,26 @@
 {
-  "name": "date-fns-example-webpack2",
+  "name": "date-fns-example-webpack3",
   "version": "0.1.0",
-  "description": "Example of date-fns usage with webpack 2.x",
+  "description": "Example of date-fns usage with webpack 3.x",
   "main": "example.js",
   "author": "Sasha Koss <koss@nocorp.me>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/date-fns/date-fns.git"
+  },
   "dependencies": {
     "babili": "^0.1.4",
     "gzip-size-cli": "^2.0.0",
-    "webpack": "2"
+    "webpack": "3"
   },
   "scripts": {
-    "build": "yarn build-date-fns && yarn build-webpack && yarn build-babili",
+    "build": "yarn build-date-fns && yarn build-webpack && yarn stats-size",
     "build-minimal": "env ENTRY_NAME=minimal yarn build",
     "build-no-shaking": "env ENTRY_NAME=noShaking yarn build",
     "build-date-fns": "env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
-    "build-webpack": "webpack example=./example.js minimal=./minimal.js noShaking=./noShaking.js fp=./fp.js misc=./misc.js --output-path dist --output-filename [name].js",
-    "build-babili": "yarn build-babili-entry && yarn build-babili-fp && yarn build-babili-misc && yarn stats-size",
-    "build-babili-entry": "babili dist/${ENTRY_NAME:-example}.js --out-file dist/${ENTRY_NAME:-example}.min.js --minified --no-comments",
-    "build-babili-fp": "babili dist/fp.js --out-file dist/fp.min.js --minified --no-comments",
-    "build-babili-misc": "babili dist/misc.js --out-file dist/misc.min.js --minified --no-comments",
-    "stats-size": "gzip-size dist/${ENTRY_NAME:-example}.min.js",
+    "build-webpack": "webpack example=./example.js minimal=./minimal.js noShaking=./noShaking.js fp=./fp.js misc=./misc.js --optimize-minimize --output-path dist --output-filename [name].js",
+    "stats-size": "gzip-size dist/${ENTRY_NAME:-example}.js",
     "stats-minimal": "gzip-size dist/${ENTRY_NAME:-example}.min.js",
     "test": "yarn test-example && yarn test-minimal && yarn test-noShaking && yarn test-fp && yarn test-misc",
     "test-example": "test $(env TZ=UTC node ./dist/example.min.js) = true",

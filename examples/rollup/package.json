@@ -5,6 +5,10 @@
   "main": "example.js",
   "author": "Sasha Koss <koss@nocorp.me>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/date-fns/date-fns.git"
+  },
   "dependencies": {
     "babili": "^0.0.9",
     "gzip-size-cli": "^1.0.0",
