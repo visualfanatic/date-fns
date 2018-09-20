@@ -2,7 +2,7 @@
 /* eslint-env mocha */
 /* global HTMLIFrameElement */
 
-import assert from 'power-assert'
+import assert from 'assert'
 import isDate from '.'
 
 describe('isDate', function () {

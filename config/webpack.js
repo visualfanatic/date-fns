@@ -1,28 +1,30 @@
 var path = require('path')
 
-var config = {
-  cache: true,
+var config = Object.assign({
   devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'inline-source-map',
-  entry: getEntryConfig(),
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   output: getOutputConfig(),
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.json$/, loader: 'json'}
+    rules: [
+      {test: /\.js$/, exclude: /node_modules/, use: 'babel-loader'}
     ]
   }
-}
+}, entryConfig())
 
-function getEntryConfig () {
+function entryConfig () {
   if (process.env.BUILD_TESTS) {
     return {
-      'tests': './testWithoutLocales.js'
+      entry: {
+        'tests': './testWithoutLocales.js'
+      }
     }
   } else if (process.env.NODE_ENV === 'test') {
     return {}
   } else {
     return {
-      'date_fns': './tmp/umd/index.js'
+      entry: {
+        'date_fns': './tmp/umd/index.js'
+      }
     }
   }
 }

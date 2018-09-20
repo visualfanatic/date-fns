@@ -1,4 +1,7 @@
 {
-  "presets": ["es2015", "babel-preset-power-assert"],
-  "plugins": ["add-module-exports"]
+  "presets": [
+    ["@babel/preset-env", {"modules": false}],
+    "babel-preset-power-assert"
+  ],
+  "plugins": ["babel-plugin-add-module-exports"]
 }
